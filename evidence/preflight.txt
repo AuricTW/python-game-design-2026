@@ -1,24 +1,69 @@
 Paste each command followed by its complete text output here.
 
 1. python --version
+
+
+```text
+> python --version
 Python 3.12.10
+```
+
 2. python -c "import sys; print(sys.executable)"
-D:\Lab\lab01_student_starter\lab01-work\venv\Scripts\python.exe
+
+```text
+> python -c "import sys; print(sys.executable)"
+D:\Lab\lab01_student_starter\lab01-work\.venv\Scripts\python.exe
+```
+
 3. python -c "import struct; print(struct.calcsize('P') * 8)"
+
+```text
+> python -c "import struct; print(struct.calcsize('P') * 8)"
 64
+```
+
 4. python -m pip --version
-pip 25.0.1 from D:\Lab\lab01_student_starter\lab01-work\venv\Lib\site-packages\pip (python 3.12)
+
+```text
+> python -m pip --version
+pip 25.0.1 from D:\Lab\lab01_student_starter\lab01-work\.venv\Lib\site-packages\pip (python 3.12)
+```
+
 5. python -m pytest --version
-D:\Lab\lab01_student_starter\lab01-work\venv\Scripts\python.exe: No module named pytest
+
+```text
+> python -m pytest --version
+pytest 9.1.1
+```
+
 6. git --version
+
+```text
+> git --version
 git version 2.51.2.windows.1
+```
+
 7. git status
+
+```text
+> git status
 On branch main
-Your branch is up to date with 'origin/main'.
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+        modified:   README.md
+        modified:   src/lab01.py
+        modified:   tests/test_lab01_student.py
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-        venv/
+        evidence/20260810_164905.jpg
+        homework.md
+        test.py
 
-nothing added to commit but untracked files present (use "git add" to track)
-
+no changes added to commit (use "git add" and/or "git commit -a")
+```

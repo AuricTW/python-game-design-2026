@@ -1,5 +1,19 @@
 # Lab 01 - Environment, Git, and Tracebacks
 
+學號：N96154637
+姓名：李韋宏
+
+- Python：3.12.10（64-bit）
+- 虛擬環境：跟目錄 `.venv`(有用另一個`venv`做個人測試，在gitugnore有出現，忽略即可)
+- 已知限制：None(應該啦)
+
+```powershell
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m pytest -q
+python -c "import src.lab01"
+```
+
 > Course block: D1-B1, 09:00-12:00  
 > Estimated total work: approximately 110 minutes  
 > In class: 30-minute Parts A/B checkpoint during 11:20-11:50  
@@ -7,6 +21,8 @@
 > Protected lunch: 12:00-13:00 is not Lab catch-up time  
 > AI level: **L0 Human-only**  
 > Work mode: Individual
+
+
 
 ## Scenario
 
