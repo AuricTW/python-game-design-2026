@@ -1,0 +1,15 @@
+Paste each command followed by its complete text output here.
+
+1. python --version
+
+2. python -c "import sys; print(sys.executable)"
+
+3. python -c "import struct; print(struct.calcsize('P') * 8)"
+
+4. python -m pip --version
+
+5. python -m pytest --version
+
+6. git --version
+
+7. git status
