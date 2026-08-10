@@ -24,7 +24,7 @@ src/lab01.py:33  format_student_record
 src/lab01.py:12  classify_score
 ```
 
-第一個位置是 `classify_score` 第 12 行，該行根據型別契約拋出 `TypeError`。第 33 行則顯示錯誤的字串分數是由 `format_student_record` 傳入。
+第一個位置是 `classify_score` 第 12 行，該行根據型別給出 `TypeError`。第 33 行則顯示錯誤的字串分數是由 `format_student_record` 傳入。
 
 ## Smallest reproducible case
 
@@ -37,7 +37,7 @@ python -c "from src.lab01 import format_student_record; format_student_record('L
 型別錯誤。
 要求 `score` 必須是 `int`，但傳入了 `str`。
 
-函式應保留型別驗證並拒絕字串分數。這次是呼叫者刻意傳入不合法的資料，所以修復方式是移除暫時呼叫，不是放寬函式邊界的契約。
+函式應保留型別驗證並拒絕字串分數。修復方式是移除暫時呼叫。
 
 ## Minimal repair and verification command
 
