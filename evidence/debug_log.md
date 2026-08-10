@@ -22,8 +22,6 @@ src/lab01.py:30  format_student_record
 src/lab01.py:9   classify_score
 ```
 
-第一個位置是 `classify_score` 第 9 行，該行根據型別給出 `TypeError`。第 30 行則顯示錯誤的字串分數是由 `format_student_record` 傳入。
-
 ## Smallest reproducible case
 
 ```powershell
@@ -35,7 +33,7 @@ python -c "from src.lab01 import format_student_record; format_student_record('L
 型別錯誤。
 要求 `score` 必須是 `int`，但傳入了 `str`。
 
-函式邊界應保留型別驗證並拒絕字串分數；依照契約，責任在傳入錯誤型別的 caller，而不是函式邊界。修復方式是移除暫時呼叫。
+函式應保留型別驗證並拒絕字串分數；問題在傳入錯誤型別的 caller。修復方式是移除暫時呼叫。
 
 ## Minimal repair and verification command
 
