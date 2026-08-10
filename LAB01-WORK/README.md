@@ -4,7 +4,7 @@
 姓名：李韋宏
 
 - Python：3.12.10（64-bit）
-- 虛擬環境：跟目錄 `.venv`(有用另一個`venv`做個人測試，在gitugnore有出現，忽略即可)
+- 虛擬環境：跟目錄 `.venv`
 - 已知限制：None(應該啦)
 
 ```powershell
