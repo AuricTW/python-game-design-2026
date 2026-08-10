@@ -1,0 +1,12 @@
+LAB 02 FIXED REPLAY EVIDENCE
+
+Command or script:
+Seed:
+Input sequence:
+dt sequence:
+
+First snapshot:
+Second snapshot:
+Equal:
+
+Why equal replay does not mean every seed must have the same result:
