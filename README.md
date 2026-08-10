@@ -1,5 +1,5 @@
 # Lab 01 - Environment, Git, and Tracebacks
-
+好難喔
 學號：N96154637
 姓名：李韋宏
 
