@@ -317,7 +317,64 @@ class World:
         self.player.y = min(self.player.y, max_y)
         self.player.y = max(self.player.y, min_y)
 
+
         # TODO(Lab 03): update firing, spawning, movement, and object cleanup.
+        # step3: Implement and verify the bullet lifecycle
+        # 新的 cooldown_left =max(0.0, 舊 cooldown_left - bounded_dt)
+        self.player.cooldown_left = max(0.0, self.player.cooldown_left - bounded_dt)
+
+        if controls.fire and self.player.cooldown_left == 0.0 and len(self.bullets) < self.config.max_bullets:
+            self.bullets.append(
+                Bullet(
+                    bullet_id=self.next_bullet_id, # 給子彈分配唯一的 ID
+                    x=self.player.x,
+                    y=self.player.y - self.player.radius, # 子彈從玩家上方發射
+                    vy=-self.config.bullet_speed, # 子彈向上移動
+                    
+                )
+            )
+            self.events.append(
+                GameEvent("shoot", entity_id=self.next_bullet_id)
+            )
+            self.next_bullet_id += 1 # 更新下一個子彈的 ID
+            self.player.cooldown_left = self.config.fire_cooldown # 重置冷卻
+
+        remaining_bullets = []
+        for bullet in self.bullets:
+            bullet.y += bullet.vy * bounded_dt # 更新子彈位置
+            if bullet.y + bullet.radius >= self.config.hud_height :
+                remaining_bullets.append(bullet)
+        self.bullets = remaining_bullets
+
+        # step4: implement seeded spawning, timers, and IDs
+        self.spawn_timer -= bounded_dt
+        if self.spawn_timer <= 0.0 and len(self.enemies) < self.config.max_enemies: # 計時器已到期 and 敵人數還沒有達到上限
+            
+            enemy_radius = 12.0
+            enemy_x = self._rng.uniform(
+                enemy_radius,
+                self.config.width - enemy_radius,
+            )
+            self.enemies.append(
+                Enemy(
+                    enemy_id=self.next_enemy_id,
+                    kind="scout",
+                    x=enemy_x,
+                    y=self.config.hud_height - enemy_radius,
+                    vx=0.0,
+                    vy=self._rng.uniform(80.0, 140.0),
+                    radius=enemy_radius,
+                    hp=1,
+                    score_value=10,
+                )
+                
+            )
+            self.next_enemy_id += 1
+            self.spawn_timer += self.config.spawn_interval # 重置敵人出現時間
+
+        # step5: Move enemies and process escape exactly once
+        
+        
         # TODO(Lab 04): resolve bullet/enemy and enemy/player collisions once.
 
         if self.elapsed >= self.config.round_seconds:
