@@ -279,7 +279,43 @@ class World:
         y 的最小值和最大值分別是 config.hud_height + player.radius
         和 config.height - player.radius。。
         """
+        direction_x = int(controls.right) - int(controls.left) # 計算水平移動意圖
+        direction_y = int(controls.down) - int(controls.up) # 計算垂直移動意圖
+        direction_length = math.hypot(direction_x, direction_y) # 計算方向向量的歐幾里得距離
 
+        if direction_length > 0.0:
+            direction_x /= direction_length
+            direction_y /= direction_length
+
+            # distance = self.player.speed * bounded_dt # 計算位移距離 沒加入precision
+            speed_multiplier = 0.5 if controls.precision else 1.0 # precision
+            effective_speed = self.player.speed * speed_multiplier
+            distance = effective_speed * bounded_dt
+
+            self.player.x += direction_x * distance # 更新玩家的 x 坐標
+            self.player.y += direction_y * distance # 更新玩家的 y 坐標
+
+        # step 8 Keep the player's center inside the inclusive playfield
+        """ 這樣寫也可 但我覺得下面比較好懂
+        self.player.x = max(
+            self.player.radius,
+            min(self.player.x, self.config.width - self.player.radius),
+        )
+        self.player.y = max(
+            self.config.hud_height + self.player.radius,
+            min(self.player.y, self.config.height - self.player.radius),
+        )
+        """
+        min_x = self.player.radius # 最小 x 坐標
+        max_x = self.config.width - self.player.radius
+        min_y = self.config.hud_height + self.player.radius
+        max_y = self.config.height - self.player.radius
+
+        self.player.x = min(self.player.x, max_x)  # 防止玩家超出右邊，強制把玩家送回max_x
+        self.player.x = max(self.player.x, min_x)
+
+        self.player.y = min(self.player.y, max_y)
+        self.player.y = max(self.player.y, min_y)
 
         # TODO(Lab 03): update firing, spawning, movement, and object cleanup.
         # TODO(Lab 04): resolve bullet/enemy and enemy/player collisions once.
