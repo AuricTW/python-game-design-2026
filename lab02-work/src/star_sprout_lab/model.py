@@ -260,6 +260,27 @@ class World:
         self.elapsed = min(self.config.round_seconds, self.elapsed + bounded_dt)
 
         # TODO(Lab 02): update and clamp player movement using InputState.
+        """
+        上下左右方向：
+        根據 right 和 left 計算水平移動意圖；
+        根據 down 和 up 計算垂直移動意圖；
+        向上時 y 應該減少，向下時 y 應該增加。
+
+        正規化：
+        先計算方向向量的歐幾里得距離；
+        只有在它不是 0 時才做除法。
+
+        速度與位移：
+        precision=True 時，速度應變成原本的50%；
+        位移會由正規化方向、速度和 bounded_dt 共同決定。
+
+        邊界：
+        x 的最小值和最大值分別是 player.radius 和 config.width - player.radius；
+        y 的最小值和最大值分別是 config.hud_height + player.radius
+        和 config.height - player.radius。。
+        """
+
+
         # TODO(Lab 03): update firing, spawning, movement, and object cleanup.
         # TODO(Lab 04): resolve bullet/enemy and enemy/player collisions once.
 

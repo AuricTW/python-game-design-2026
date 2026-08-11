@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from src.lab01 import classify_score, format_student_record
+from src.lab01 import classify_score, format_student_record 
 
 
 @pytest.mark.parametrize(
@@ -23,6 +23,7 @@ def test_classification_boundaries(score: int, expected: str) -> None:
 
 
 @pytest.mark.parametrize("score", [-1, 101])
+
 def test_out_of_range_scores_are_rejected(score: int) -> None:
     with pytest.raises(ValueError):
         classify_score(score)
