@@ -1,0 +1,28 @@
+LAB 02 FIXED REPLAY EVIDENCE
+
+Command or script:
+.\.venv\Scripts\python.exe -，使用下列固定 seed、inputs 與 dt 執行兩次獨立 replay。
+
+Seed:
+2026
+
+Input sequence:
+1. right=True
+2. up=True, precision=True
+3. left=True, down=True
+4. left=True, right=True, down=True
+
+dt sequence: [0.02, 0.03, 0.05, 0.20]
+
+First snapshot:
+{"bullets": 0, "elapsed": 0.15, "enemies": 0, "lives": 3, "phase": "playing", "player": [475.393, 524.0], "remaining": 59.85, "score": 0, "seed": 2026, "tick": 4}
+
+Second snapshot:
+{"bullets": 0, "elapsed": 0.15, "enemies": 0, "lives": 3, "phase": "playing", "player": [475.393, 524.0], "remaining": 59.85, "score": 0, "seed": 2026, "tick": 4}
+
+Equal: True
+
+Why equal replay does not mean every seed must have the same result:
+相同 seed 只會讓偽亂數產生器從相同起點開始；
+還必須搭配相同的 inputs 和 dt，才能重現相同結果。
+不同 seed 可能產生不同的隨機序列，因此未來的敵人、位置或事件可能不同，不保證 snapshot 相同。
