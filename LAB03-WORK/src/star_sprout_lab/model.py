@@ -197,7 +197,8 @@ class World:
     def remaining(self) -> float:
         return max(0.0, self.config.round_seconds - self.elapsed)
 
-    def reset(self, seed: int | None = None) -> None:
+    # 用來重置遊戲狀態，保留配置但可以選擇新的隨機種子
+    def reset(self, seed: int | None = None) -> None: 
         """Restore every gameplay field while preserving the config."""
 
         replacement = World.create(
@@ -219,7 +220,7 @@ class World:
             "next_enemy_id",
             "_rng",
         ):
-            setattr(self, name, getattr(replacement, name))
+            setattr(self, name, getattr(replacement, name)) # 將替代世界的屬性設置到當前世界
 
     def toggle_pause(self) -> Phase:
         if self.phase is Phase.PLAYING:
@@ -339,7 +340,7 @@ class World:
             self.next_bullet_id += 1 # 更新下一個子彈的 ID
             self.player.cooldown_left = self.config.fire_cooldown # 重置冷卻
 
-        remaining_bullets = []
+        remaining_bullets = [] # 用來存放還在遊戲中的子彈
         for bullet in self.bullets:
             bullet.y += bullet.vy * bounded_dt # 更新子彈位置
             if bullet.y + bullet.radius >= self.config.hud_height :
@@ -373,8 +374,21 @@ class World:
             self.spawn_timer += self.config.spawn_interval # 重置敵人出現時間
 
         # step5: Move enemies and process escape exactly once
-        
-        
+ 
+        remaining_enemies = [] # 用來存放還在遊戲中的敵人
+
+        for enemy in self.enemies:
+            enemy.x += enemy.vx * bounded_dt
+            enemy.y += enemy.vy * bounded_dt
+            if enemy.y - enemy.radius > self.config.height: #若敵人完全超出下邊界
+                self.player.lives = max(0, self.player.lives - 1) # 玩家生命值減少
+
+            else:
+                remaining_enemies.append(enemy) # 若無則保留
+
+        self.enemies = remaining_enemies
+
+
         # TODO(Lab 04): resolve bullet/enemy and enemy/player collisions once.
 
         if self.elapsed >= self.config.round_seconds:

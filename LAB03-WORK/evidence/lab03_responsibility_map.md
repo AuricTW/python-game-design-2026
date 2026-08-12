@@ -12,7 +12,7 @@ Complete this before implementing object lifecycle rules.
 ## Cross-object invariants
 
 1. ID 唯一且依序增加
-2. 每個物件只能移除／扣命一次
+2. 每個物件只能移除 或 扣命一次
 3. domain model 不依賴 renderer 或 Pygame
 
 Explain why the renderer must not decide whether an object is removed:

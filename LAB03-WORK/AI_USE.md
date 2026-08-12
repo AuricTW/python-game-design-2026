@@ -3,7 +3,7 @@
 Choose one:
 
 - [ ] No AI used.
-- [ ] L1 conceptual assistance used after the TA checkpoint; record it below.
+- [X] L1 conceptual assistance used after the TA checkpoint; record it below.
 
 Tool / service and date:
 
