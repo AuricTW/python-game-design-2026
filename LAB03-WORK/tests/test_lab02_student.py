@@ -14,7 +14,7 @@ class StudentLab02Tests(unittest.TestCase):
     def test_replace_with_a_specific_repeatability_or_purity_case(self) -> None:
         self.skipTest("Replace this skip with your own focused assertion")
     """
-    # 測試水平相反方向的按鍵是否互相抵消，並且垂直方向的按鍵是否仍然有效
+    # Lab2 測試水平相反方向的按鍵是否互相抵消，並且垂直方向的按鍵是否仍然有效
     def test_horizontal_opposites_cancel_while_vertical_moves(self) -> None:
         before = initial_state(seed=42)
         after = step(
@@ -26,7 +26,7 @@ class StudentLab02Tests(unittest.TestCase):
         self.assertEqual(after.player.x, before.player.x)
         self.assertLess(after.player.y, before.player.y)
 
-    # 測試精確模式下的移動是否使用了最大時間步長限制
+    # Lab2測試精確模式下的移動是否使用了最大時間步長限制
     def test_precision_uses_bounded_dt(self) -> None:
         config = GameConfig(player_speed=120.0, max_dt=0.05)
         before = initial_state(seed=43, config=config)
@@ -39,6 +39,15 @@ class StudentLab02Tests(unittest.TestCase):
 
         self.assertAlmostEqual(after.player.x - before.player.x, 3.0)
         self.assertAlmostEqual(after.elapsed, 0.05)
+
+    # Lab3
+
+
+    
+
+    # Lab3
+
+
 
 if __name__ == "__main__":
     unittest.main()
